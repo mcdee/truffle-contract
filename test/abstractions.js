@@ -88,7 +88,17 @@ describe("Abstractions", function() {
     }).then(function(tx) {
       return example.value.call();
     }).then(function(value) {
-      assert.equal(value.valueOf(), 5, "Ending value should be five");
+      assert.equal(value.valueOf(), 5, "Value should be five");
+      return example.methods['send()']();
+    }).then(function(tx) {
+      return example.value.call();
+    }).then(function(value) {
+      assert.equal(value.valueOf(), 4, "Value should be four");
+      return example.methods['send(uint256)'](2);
+    }).then(function(tx) {
+      return example.value.call();
+    }).then(function(value) {
+      assert.equal(value.valueOf(), 2, "Value should be two");
     }).then(done).catch(done);
   });
 

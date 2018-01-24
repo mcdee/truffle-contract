@@ -24,6 +24,18 @@ contract Example {
     ExampleEvent(msg.sender, 8);
   }
 
+  function send() {
+    if (value > 0) {
+        value--;
+    }
+  }
+
+  function send(uint _value) {
+    if (value >= _value) {
+        value-= _value;
+    }
+  }
+
   function() payable {
     fallbackTriggered = true;
   }
